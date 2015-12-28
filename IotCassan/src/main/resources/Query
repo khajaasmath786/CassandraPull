@@ -1,0 +1,68 @@
+CREATE KEYSPACE IF NOT EXISTS example WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'}  AND durable_writes = true;
+
+CREATE TABLE IF NOT EXISTS example.greetings (
+    user text,
+    id timeuuid,
+    greet text,
+    creation_date timestamp,
+    PRIMARY KEY (user, id)
+) WITH CLUSTERING ORDER BY (id DESC);
+
+INSERT INTO example.greetings (user , id , greet , creation_date ) VALUES ('H01474777', now(),'hello','2014-05-21 07:32:16');
+
+
+---------------------------------------------------------
+CREATE TABLE ids_solutions.ids_device (
+
+oemname text,
+
+deviceid text,
+
+attributes map<text, text>,
+
+model text,
+
+user text,
+
+virtualdeviceid text,
+
+PRIMARY KEY (oemname, deviceid));
+
+insert into ids_device (oemname,deviceid,attributes,model,user,virtualdeviceid) values (Philips,1132.197.246.251:80,{'accessToken': '1f1293a942ce33792461def035e61189', 'name': 'Parking Space Light'},Starter Kit,SmartParkingPOC,fc1dce6e­c724­4eb9­b876­2e164997b202);
+
+*****
+
+CREATE TABLE ids_solutions.ids_actuator_model (actuatormodelname text PRIMARY KEY,basetype text,data text,type text);
+
+insert into ids_actuator_model (actuatormodelname,basetype,type) values ('Switch','','N/A');
+
+
+****
+CREATE TABLE ids_solutions.ids_sensor_model (sensormodelname text PRIMARY KEY,data text,type text);
+insert into ids_sensor_model (sensormodelname,type) values ('Presence','');
+
+
+
+
+
+----------------- URLS ----------------
+http://localhost:8080/device
+http://localhost:8080/device?user=SmartParkingPOC
+http://localhost:8080/device?virtualDeviceId=fc1dce6e­c724­4eb9­b876­2e164997b202
+http://localhost:8080/device?oemName=Philips&deviceId=1132.197.246.251:80
+
+http://localhost:8080/sensormodel
+http://localhost:8080/sensormodel?sensorModelName=Presence
+
+http://localhost:8080/actuatormodel
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																		http://localhost:8080/actuatormodel?actuatorModelName=Switch
+
+
+
+
+
+
+
+
+
+ 
